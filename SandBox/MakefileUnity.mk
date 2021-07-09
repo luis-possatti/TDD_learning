@@ -13,11 +13,10 @@ UNITY_BUILD_HOME = ../unity.framework/extras/fixture/build
 UNITY_CFLAGS += -DUNITY_OUTPUT_CHAR=UnityOutputCharSpy_OutputChar
 
 SRC_DIRS = \
-	$(PROJECT_HOME_DIR)/src/LedDriver \
 
 TEST_SRC_DIRS = \
 	$(PROJECT_HOME_DIR)/unity\
-	$(PROJECT_HOME_DIR)/unity/LedDriver\
+	$(PROJECT_HOME_DIR)/unity/stdio\
 	$(UNITY_HOME)/src\
     $(UNITY_HOME)/extras/fixture/src\
     $(UNITY_HOME)/extras/fixture/test\
@@ -28,6 +27,5 @@ INCLUDE_DIRS =\
   $(UNITY_HOME)/src\
   $(UNITY_HOME)/extras/fixture/src\
   $(UNITY_HOME)/extras/fixture/test\
-  $(PROJECT_HOME_DIR)/include/LedDriver\
 
 include $(UNITY_BUILD_HOME)/MakefileWorker.mk
