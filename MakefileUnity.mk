@@ -7,12 +7,12 @@ SILENCE = @
 COMPONENT_NAME = BookCode_Unity
 
 #--- Inputs ----#
-UNITY_HOME = ../tools/unity
+UNITY_HOME = $(UNITY_HOME_DIR)
 CPP_PLATFORM = Gcc
 PROJECT_HOME_DIR = .
 PROJECT_TEST_DIR = tests
 CPP_PLATFORM = Gcc
-UNITY_BUILD_HOME = ../tools/unity/extras/fixture/build
+UNITY_BUILD_HOME = $(UNITY_HOME)/extras/fixture/build
 
 UNITY_CFLAGS += -DUNITY_OUTPUT_CHAR=UnityOutputCharSpy_OutputChar
 UNITY_WARNINGFLAGS = -Wall -Werror -Wswitch-default
