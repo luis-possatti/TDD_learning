@@ -1,3 +1,7 @@
+# compilation outputs
 *.o
 *.d
 *.a
+
+# vscode stuffs
+.vscode
