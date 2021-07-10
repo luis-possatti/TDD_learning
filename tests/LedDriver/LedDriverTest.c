@@ -21,3 +21,16 @@ TEST(LedDriver, LedsOffAfterCreate)
     TEST_ASSERT_EQUAL_HEX16(0, virtualLeds);
 }
 
+TEST(LedDriver, TurnLedOneOn)
+{
+    /* define the virtual leds buffer and create the driver instance*/
+    uint16_t virtualLeds;
+    LedDriver_Creator(&virtualLeds);
+
+    /* action */
+    LedDriver_TurnOn(1);
+
+    /* results checkup */
+    TEST_ASSERT_EQUAL_HEX16(1, virtualLeds);
+
+}
