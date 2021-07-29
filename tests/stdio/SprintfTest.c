@@ -57,7 +57,6 @@ static void expect(const char * s)
 
 static void given(int charsWritten)
 {
-    printf("expected: %s\n", expected);
     TEST_ASSERT_EQUAL(strlen(expected), charsWritten);
     TEST_ASSERT_EQUAL_STRING(expected, output);
     TEST_ASSERT_BYTES_EQUAL(0xaa, output[strlen(expected) + 1]);
