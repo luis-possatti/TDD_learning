@@ -6,5 +6,6 @@ TEST_GROUP_RUNNER(CircularBufferCreation)
     RUN_TEST_CASE(CircularBufferCreation, CreateBufferSize10);
     RUN_TEST_CASE(CircularBufferCreation, CreateBufferSize0);
 
+
 }
 

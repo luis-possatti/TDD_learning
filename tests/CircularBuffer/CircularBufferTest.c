@@ -30,3 +30,11 @@ TEST(CircularBufferCreation, CreateBufferSize10)
     TEST_ASSERT_FALSE(pointer == NULL)
 }
 
+/*
+ * This test case cover a circular buffer creation with size 0
+*/
+TEST(CircularBufferCreation, CreateBufferSize0)
+{
+    CircularBuffer_t *pointer = CircularBuffer_Create(0);
+    TEST_ASSERT_TRUE(pointer == NULL)
+}
