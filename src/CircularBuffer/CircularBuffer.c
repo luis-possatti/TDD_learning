@@ -4,5 +4,12 @@ CircularBuffer_t dummy_buffer;
 
 CircularBuffer_t *CircularBuffer_Create(uint8_t size)
 {
-    return &dummy_buffer;
+    if(size > 0)
+    {
+        return &dummy_buffer;
+    }
+    else
+    {
+        return NULL;
+    }
 }
