@@ -38,3 +38,26 @@ TEST(CircularBufferCreation, CreateBufferSize0)
     CircularBuffer_t *pointer = CircularBuffer_Create(0);
     TEST_ASSERT_TRUE(pointer == NULL)
 }
+
+
+
+TEST_GROUP(CircularBufferEmpty);
+
+uint8_t circular_buffer_size;
+TEST_SETUP(CircularBufferEmpty)
+{
+    circular_buffer_size = 10;
+
+}
+
+TEST_TEAR_DOWN(CircularBufferEmpty)
+{
+
+}
+
+
+TEST(CircularBufferEmpty, CreateEmptyBuffer)
+{
+    CircularBuffer_t *buffer_p = CircularBuffer_Create(circular_buffer_size);
+    TEST_ASSERT_TRUE(CircularBuffer_IsEmpty(buffer_p)) 
+}

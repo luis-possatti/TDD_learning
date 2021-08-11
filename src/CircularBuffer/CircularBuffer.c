@@ -13,3 +13,9 @@ CircularBuffer_t *CircularBuffer_Create(uint8_t size)
         return NULL;
     }
 }
+
+
+bool CircularBuffer_IsEmpty(CircularBuffer_t *buffer)
+{
+    return true;
+}
