@@ -25,11 +25,11 @@ UNITY_WARNINGFLAGS = -Wall -Werror -Wswitch-default
 #UNITY_WARNINGFLAGS += -Wshadow 
 
 SRC_DIRS = \
-	$(PROJECT_SRC_DIR)/LedDriver\
+	$(PROJECT_SRC_DIR)/CircularBuffer\
 
 TEST_SRC_DIRS = \
 	$(PROJECT_TEST_DIR)\
-	$(PROJECT_TEST_DIR)/LedDriver\
+	$(PROJECT_TEST_DIR)/CircularBuffer\
 	$(UNITY_HOME)/unity\
 	$(UNITY_HOME)/src\
     $(UNITY_HOME)/extras/fixture/src\
@@ -42,7 +42,7 @@ INCLUDE_DIRS =\
   $(UNITY_HOME)/src\
   $(UNITY_HOME)/extras/fixture/src\
   $(UNITY_HOME)/extras/fixture/test\
-  $(PROJECT_INCLUDE_DIR)/LedDriver
+  $(PROJECT_INCLUDE_DIR)/CircularBuffer
   
 include $(UNITY_BUILD_HOME)/MakefileWorker.mk
 
