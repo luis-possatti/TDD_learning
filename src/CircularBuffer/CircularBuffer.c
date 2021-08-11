@@ -19,3 +19,9 @@ bool CircularBuffer_IsEmpty(CircularBuffer_t *buffer)
 {
     return true;
 }
+
+
+bool CircularBuffer_IsFull(CircularBuffer_t *buffer)
+{
+    return false;
+}
