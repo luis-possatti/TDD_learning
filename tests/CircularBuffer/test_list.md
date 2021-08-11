@@ -15,18 +15,19 @@
   - [x]  Create buffer with size 1 and receive a valid pointer
   - [x]  Create buffer with size 0 and receive null
 ## Detect buffer empty
-  - [ ]  Create buffer and check is empty
+  - [x]  Create buffer and check is empty
   - [ ]  Create buffer write to it and check not empty
   - [ ]  Create buffer write to it, read and check is empty
   - [ ]  Create a buffer write N times and read N times. Ensure not empty for N-1 reads and empty after last read. N < size
   - [ ]  Create a buffer, write 2*$Size. Read $Size times and check not empty for $Size-1 reads and empty after last read. 
 ## Detect buffer full
-  - [ ]  Create a buffer and check not full
+  - [x]  Create a buffer and check not full
   - [ ]  Create a buffer write $(Size - 1) times and check not full
   - [ ]  Create a buffer write $Size times and check is full
   - [ ]  Create a buffer write $Size times and read one time and check is not full 
   - [ ]  Create a buffer write $Size times and read $Size times and check is not full after all the reads.
 ## Write in circular method:
+  - [x]  Write one value to buffer and check sucess every write.
   - [ ]  Write value $Size times. Check sucess every write.
   - [ ]  Write value $Size times, read one time and write one time and check sucess every write
   - [ ]  Write value $Size times + 1. Check sucess for all the writes, except the last.

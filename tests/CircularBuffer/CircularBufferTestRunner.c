@@ -9,5 +9,7 @@ TEST_GROUP_RUNNER(CircularBufferCreation)
     RUN_TEST_CASE(CircularBufferEmpty, CreateEmptyBuffer);
     RUN_TEST_CASE(CircularBufferFull, BufferNotFullAfterCreation)
 
+    RUN_TEST_CASE(CircularBufferWrite, WriteOneValueToBufferAfterCreation)
+
 }
 

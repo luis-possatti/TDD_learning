@@ -3,5 +3,8 @@
 *.d
 *.a
 
+# framework stuffs
+BookCode_Unity_tests
+
 # vscode stuffs
 .vscode

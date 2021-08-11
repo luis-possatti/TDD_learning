@@ -25,3 +25,9 @@ bool CircularBuffer_IsFull(CircularBuffer_t *buffer)
 {
     return false;
 }
+
+
+int8_t CircularBuffer_WriteValue(CircularBuffer_t *buffer, uint32_t value)
+{
+    return 0;
+}
