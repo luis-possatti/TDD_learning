@@ -3,7 +3,7 @@
 
 
 uint8_t circular_buffer_size;
-CircularBuffer_t *buffer_p;
+CircularBuffer_t buffer_p;
 
 
 TEST_GROUP(CircularBufferFull);

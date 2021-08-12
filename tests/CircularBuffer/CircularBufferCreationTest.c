@@ -1,5 +1,8 @@
 #include "unity_fixture.h"
 #include "CircularBuffer.h"
+
+CircularBuffer_t buffer_p;
+
 TEST_GROUP(CircularBufferCreation);
 
 TEST_SETUP(CircularBufferCreation)
@@ -17,8 +20,8 @@ TEST_TEAR_DOWN(CircularBufferCreation)
 */
 TEST(CircularBufferCreation, CreateBufferSize1)
 {
-    CircularBuffer_t *pointer = CircularBuffer_Create(1);
-    TEST_ASSERT_FALSE(pointer == NULL)
+    buffer_p = CircularBuffer_Create(1);
+    TEST_ASSERT_FALSE(buffer_p == NULL)
 }
 
 /*
@@ -26,8 +29,8 @@ TEST(CircularBufferCreation, CreateBufferSize1)
 */
 TEST(CircularBufferCreation, CreateBufferSize10)
 {
-    CircularBuffer_t *pointer = CircularBuffer_Create(10);
-    TEST_ASSERT_FALSE(pointer == NULL)
+    buffer_p = CircularBuffer_Create(10);
+    TEST_ASSERT_FALSE(buffer_p == NULL)
 }
 
 /*
@@ -35,8 +38,8 @@ TEST(CircularBufferCreation, CreateBufferSize10)
 */
 TEST(CircularBufferCreation, CreateBufferSize0)
 {
-    CircularBuffer_t *pointer = CircularBuffer_Create(0);
-    TEST_ASSERT_TRUE(pointer == NULL)
+    buffer_p = CircularBuffer_Create(0);
+    TEST_ASSERT_TRUE(buffer_p == NULL)
 }
 
 
