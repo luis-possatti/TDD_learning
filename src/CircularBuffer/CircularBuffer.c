@@ -31,3 +31,9 @@ int8_t CircularBuffer_WriteValue(CircularBuffer_t *buffer, uint32_t value)
 {
     return 0;
 }
+
+
+int8_t CircularBuffer_ReadValue(CircularBuffer_t *buffer, uint32_t *data_p)
+{
+    return -1;
+}

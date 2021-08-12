@@ -34,6 +34,8 @@
   - [ ]  Write value $2*Size times check sucess for first $Size writes and failure  other writes.
   - [ ]  Write $2*Size times, read one time and write one time again. Check sucess for first $Size writes, failure for the others $Size writes and sucess for the last write.
 ## Read in FIFO method:
+  - [x]  Read a value before any write and check error result
+  - [ ]  Write a value and read. Check result is sucess
   - [ ]  Write a value and read the same value
   - [ ]  Write a value $Size times and read $size times the same
   - [ ]  Write sort of $Size different values and read the same sequence
