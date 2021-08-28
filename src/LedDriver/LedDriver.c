@@ -15,11 +15,18 @@ static uint16_t convert_led_index_to_bit(uint8_t index)
 
 
 
-/* Public functions definitions */
+/*
+************************************************** 
+* Public functions definitions 
+**************************************************
+*/
+
+#define ALL_LEDS_ON 0xffff
+
 void LedDriver_Creator(uint16_t *led_address)
 {
     led_address_register = led_address;
-    *led_address = 0;
+    *led_address = (uint16_t) ~ALL_LEDS_ON;
 }
 
 
@@ -36,11 +43,11 @@ void LedDriver_TurnOff(uint8_t led_index)
 
 void LedDriver_TurnAllOn(void)
 {
-    *led_address_register = 0xffff;
+    *led_address_register = (uint16_t) ALL_LEDS_ON;
 }
 
 
 void LedDriver_TurnAllOff(void)
 {
-    *led_address_register = 0;
+    *led_address_register = (uint16_t) ~ALL_LEDS_ON;
 }
