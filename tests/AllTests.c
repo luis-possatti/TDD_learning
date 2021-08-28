@@ -28,7 +28,7 @@
 
 static void RunAllTests(void)
 {
-    RUN_TEST_GROUP(CircularBufferCreation);
+    RUN_TEST_GROUP(LedDriver);
 }
 
 int main(int ac, char* av[])
