@@ -11,10 +11,10 @@ void LedDriver_Creator(uint16_t *led_address)
 
 void LedDriver_TurnOn(uint8_t led_index)
 {
-    *led_address_register = 1;   
+    *led_address_register |= (1 << (led_index - 1));   
 }
 
 void LedDriver_TurnOff(uint8_t led_index)
 {
-    *led_address_register = 0;
+    *led_address_register &= ~(1 << (led_index - 1));
 }
