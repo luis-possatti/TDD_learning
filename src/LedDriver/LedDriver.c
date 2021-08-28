@@ -3,6 +3,11 @@
 /* internal variables */
 static uint16_t *led_address_register;
 
+enum {
+    ALL_LEDS_ON  = ~0,
+    ALL_LEDS_OFF = ~ALL_LEDS_ON
+};
+static uint16_t leds_image;
 
 /* Internal function prototypes and definitions*/
 
@@ -21,7 +26,6 @@ static uint16_t convert_led_index_to_bit(uint8_t index)
 **************************************************
 */
 
-#define ALL_LEDS_ON 0xffff
 
 void LedDriver_Creator(uint16_t *led_address)
 {
