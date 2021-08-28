@@ -111,3 +111,16 @@ TEST(LedDriver, TurnOffAllLEDs)
 
 }
 
+TEST(LedDriver, LEDMemoryIsNotReadable)
+{
+    /* force hardware register have wrong value */
+    virtualLeds = 0xFFFF;
+
+    /* action */
+    LedDriver_TurnOn(1);
+
+    /* results checkup */
+    TEST_ASSERT_EQUAL_HEX16(0x0001, virtualLeds);
+
+}
+

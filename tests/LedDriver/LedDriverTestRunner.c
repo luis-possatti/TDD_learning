@@ -10,4 +10,5 @@ TEST_GROUP_RUNNER(LedDriver)
     RUN_TEST_CASE(LedDriver, MultipleLedsTurnedOff);
     RUN_TEST_CASE(LedDriver, TurnOnAllLEDs);
     RUN_TEST_CASE(LedDriver, TurnOffAllLEDs);
+    RUN_TEST_CASE(LedDriver, LEDMemoryIsNotReadable);
 }
