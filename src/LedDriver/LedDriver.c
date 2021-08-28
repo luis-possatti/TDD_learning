@@ -34,3 +34,13 @@ void LedDriver_TurnOff(uint8_t led_index)
 }
 
 
+void LedDriver_TurnAllOn(void)
+{
+    *led_address_register = 0xffff;
+}
+
+
+void LedDriver_TurnAllOff(void)
+{
+    *led_address_register = 0;
+}
