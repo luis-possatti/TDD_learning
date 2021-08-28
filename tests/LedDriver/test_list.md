@@ -1,0 +1,9 @@
+- All leds are off after the driver is initialized
+- A single led can be turned on
+- A single led can be turned off
+- Multile leds can be turned ON/OFF
+- Turn On all leds
+- Turn Off all leds
+- Query LEDs state
+- Check boundary values
+- Check out-of bound values
