@@ -30,28 +30,34 @@ static uint16_t convert_led_index_to_bit(uint8_t index)
 void LedDriver_Creator(uint16_t *led_address)
 {
     led_address_register = led_address;
-    *led_address = (uint16_t) ~ALL_LEDS_ON;
+    leds_image = ~ALL_LEDS_ON;
+    *led_address_register = leds_image;
+
 }
 
 
 void LedDriver_TurnOn(uint8_t led_index)
 {
-    *led_address_register |= convert_led_index_to_bit(led_index);   
+    leds_image |= convert_led_index_to_bit(led_index);
+    *led_address_register = leds_image;
 }
 
 void LedDriver_TurnOff(uint8_t led_index)
 {
-    *led_address_register &= ~convert_led_index_to_bit(led_index);
+    leds_image &= ~convert_led_index_to_bit(led_index);
+    *led_address_register = leds_image;
 }
 
 
 void LedDriver_TurnAllOn(void)
 {
-    *led_address_register = (uint16_t) ALL_LEDS_ON;
+    leds_image = (uint16_t) ALL_LEDS_ON;
+    *led_address_register = leds_image;
 }
 
 
 void LedDriver_TurnAllOff(void)
 {
-    *led_address_register = (uint16_t) ~ALL_LEDS_ON;
+    leds_image = (uint16_t) ALL_LEDS_OFF;
+    *led_address_register = leds_image;
 }
