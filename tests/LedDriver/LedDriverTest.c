@@ -176,3 +176,33 @@ TEST(LedDriver, QueryAndCheckLedIsNotOffAfterCreation)
     TEST_ASSERT_FALSE(LedDriver_IsOff(8));
 }
 
+TEST(LedDriver, TestBoundaryCondictions)
+{
+    LedDriver_TurnOn(1);
+    LedDriver_TurnOn(16);
+
+    TEST_ASSERT_EQUAL(0x8001, virtualLeds);
+}
+
+/* Ensure nothing happens when trying to turn On an out-of-bound LED */
+TEST(LedDriver, TestOutOfBoundsInTurnOn)
+{
+    LedDriver_TurnOn(0);
+    LedDriver_TurnOn(-1);
+    LedDriver_TurnOn(17);
+    LedDriver_TurnOn(165);
+
+    TEST_ASSERT_EQUAL(0, virtualLeds);
+}
+
+/* Ensure nothing happens when trying to turn On an out-of-bound LED */
+TEST(LedDriver, TestOutOfBoundsInTurnOff)
+{
+    LedDriver_TurnAllOn();
+    LedDriver_TurnOff(0);
+    LedDriver_TurnOff(-1);
+    LedDriver_TurnOff(17);
+    LedDriver_TurnOff(165);
+
+    TEST_ASSERT_EQUAL(0xffff, virtualLeds);
+}

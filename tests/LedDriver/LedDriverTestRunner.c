@@ -15,6 +15,8 @@ TEST_GROUP_RUNNER(LedDriver)
     RUN_TEST_CASE(LedDriver, QueryAndCheckLedIsOnAfterTurnOn);
     RUN_TEST_CASE(LedDriver, QueryAndCheckLedIsOffAfterCreation);
     RUN_TEST_CASE(LedDriver, QueryAndCheckLedIsNotOffAfterCreation);
-
+    RUN_TEST_CASE(LedDriver, TestBoundaryCondictions);
+    RUN_TEST_CASE(LedDriver, TestOutOfBoundsInTurnOn);
+    RUN_TEST_CASE(LedDriver, TestOutOfBoundsInTurnOff);
 
 }

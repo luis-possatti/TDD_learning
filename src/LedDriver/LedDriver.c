@@ -38,14 +38,20 @@ void LedDriver_Creator(uint16_t *led_address)
 
 void LedDriver_TurnOn(uint8_t led_index)
 {
-    leds_image |= convert_led_index_to_bit(led_index);
-    *led_address_register = leds_image;
+    if((led_index <= 16) && (led_index >= 1))
+    {
+        leds_image |= convert_led_index_to_bit(led_index);
+        *led_address_register = leds_image;
+    }
 }
 
 void LedDriver_TurnOff(uint8_t led_index)
 {
-    leds_image &= ~convert_led_index_to_bit(led_index);
-    *led_address_register = leds_image;
+    if((led_index <= 16) && (led_index >= 1))
+    {
+        leds_image &= ~convert_led_index_to_bit(led_index);
+        *led_address_register = leds_image;
+    }
 }
 
 
