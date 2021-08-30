@@ -61,3 +61,20 @@ void LedDriver_TurnAllOff(void)
     leds_image = (uint16_t) ALL_LEDS_OFF;
     *led_address_register = leds_image;
 }
+
+bool LedDriver_IsOn(uint8_t led_index)
+{
+    if(leds_image & convert_led_index_to_bit(led_index))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool LedDriver_IsOff(uint8_t led_index)
+{
+    return !LedDriver_IsOn(led_index);
+}

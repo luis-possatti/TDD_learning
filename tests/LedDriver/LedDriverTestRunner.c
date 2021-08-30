@@ -11,4 +11,10 @@ TEST_GROUP_RUNNER(LedDriver)
     RUN_TEST_CASE(LedDriver, TurnOnAllLEDs);
     RUN_TEST_CASE(LedDriver, TurnOffAllLEDs);
     RUN_TEST_CASE(LedDriver, LEDMemoryIsNotReadable);
+    RUN_TEST_CASE(LedDriver, QueryAndCheckLedIsNotOnAfterCreation);
+    RUN_TEST_CASE(LedDriver, QueryAndCheckLedIsOnAfterTurnOn);
+    RUN_TEST_CASE(LedDriver, QueryAndCheckLedIsOffAfterCreation);
+    RUN_TEST_CASE(LedDriver, QueryAndCheckLedIsNotOffAfterCreation);
+
+
 }

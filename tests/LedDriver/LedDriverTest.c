@@ -140,3 +140,39 @@ TEST(LedDriver, LEDMemoryIsNotReadable)
 
 }
 
+/* 
+ * Test case to ensure is possible to query state of a specific led.
+*/
+TEST(LedDriver, QueryAndCheckLedIsNotOnAfterCreation)
+{
+    /* check LED 7 initial state */
+    TEST_ASSERT_FALSE(LedDriver_IsOn(7));
+}
+
+
+/* 
+ * Test case to ensure the specific state is correct
+*/
+TEST(LedDriver, QueryAndCheckLedIsOnAfterTurnOn)
+{
+    /* action */
+    LedDriver_TurnOn(7);
+
+    /* checkup */
+    TEST_ASSERT_TRUE(LedDriver_IsOn(7));
+}
+
+TEST(LedDriver, QueryAndCheckLedIsOffAfterCreation)
+{
+    /* check LED 8 initial state */
+    TEST_ASSERT_TRUE(LedDriver_IsOff(8));
+}
+
+TEST(LedDriver, QueryAndCheckLedIsNotOffAfterCreation)
+{
+    LedDriver_TurnOn(8);
+
+    /* check LED 8 initial state */
+    TEST_ASSERT_FALSE(LedDriver_IsOff(8));
+}
+
