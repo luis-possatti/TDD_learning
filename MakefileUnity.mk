@@ -42,7 +42,8 @@ INCLUDE_DIRS =\
   $(UNITY_HOME)/src\
   $(UNITY_HOME)/extras/fixture/src\
   $(UNITY_HOME)/extras/fixture/test\
-  $(PROJECT_INCLUDE_DIR)/LedDriver
+  $(PROJECT_INCLUDE_DIR)/LedDriver\
+  $(PROJECT_INCLUDE_DIR)/util
   
 include $(UNITY_BUILD_HOME)/MakefileWorker.mk
 
