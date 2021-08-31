@@ -18,5 +18,5 @@ TEST_GROUP_RUNNER(LedDriver)
     RUN_TEST_CASE(LedDriver, TestBoundaryCondictions);
     RUN_TEST_CASE(LedDriver, TestOutOfBoundsInTurnOn);
     RUN_TEST_CASE(LedDriver, TestOutOfBoundsInTurnOff);
-
+    RUN_TEST_CASE(LedDriver, OutOfBoundsToDo);
 }

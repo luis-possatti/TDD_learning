@@ -206,3 +206,18 @@ TEST(LedDriver, TestOutOfBoundsInTurnOff)
 
     TEST_ASSERT_EQUAL(0xffff, virtualLeds);
 }
+
+IGNORE_TEST(LedDriver, OutOfBoundsToDo)
+{
+   /* */
+}
+
+
+/* Ensure nothing happens when trying to turn On an out-of-bound LED */
+TEST(LedDriver, OutOfBoundLedsProduceRunTimeErrror)
+{
+    LedDriver_TurnOn(-1);
+
+    TEST_ASSERT_EQUAL_STRING("LED Driver: out-of-bounds LED", RuntimeErrorStub_GetLastError());
+    TEST_ASSERT_EQUAL(-1, RuntimeErrorStub_GetLastParameter());
+}
