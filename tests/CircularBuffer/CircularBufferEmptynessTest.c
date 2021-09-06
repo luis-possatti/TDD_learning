@@ -22,7 +22,8 @@ TEST_TEAR_DOWN(CircularBufferEmpty)
 }
 
 
-TEST(CircularBufferEmpty, CreateEmptyBuffer)
+TEST(CircularBufferEmpty, BufferIsEmptyAfterCreation)
 {
     TEST_ASSERT_TRUE(CircularBuffer_IsEmpty(buffer_p));
 }
+
