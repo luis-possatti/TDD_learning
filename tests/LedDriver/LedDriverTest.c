@@ -1,6 +1,7 @@
 #include "unity_fixture.h"
 #include <stdint.h>
 #include "LedDriver.h"
+#include "RuntimeErrorStub.h"
 
 TEST_GROUP(LedDriver);
 
@@ -235,7 +236,7 @@ IGNORE_TEST(LedDriver, OutOfBoundsToDo)
 }
 
 
-/* Ensure nothing happens when trying to turn On an out-of-bound LED */
+/* Ensure a log is performed when trying to turn ON or OFF any led out of bounds */
 TEST(LedDriver, OutOfBoundLedsProduceRunTimeErrror)
 {
     LedDriver_TurnOn(-1);
