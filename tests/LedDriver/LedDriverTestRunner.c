@@ -21,6 +21,11 @@ TEST_GROUP_RUNNER(LedDriver)
     RUN_TEST_CASE(LedDriver, AnyLEDOutOfBoundsIsOff)
     RUN_TEST_CASE(LedDriver, OutOfBoundLedsProduceRunTimeErrrorAtTurnOn);
     RUN_TEST_CASE(LedDriver, OutOfBoundLedsProduceRunTimeErrrorAtTurnOff);
+    RUN_TEST_CASE(LedDriver, OutOfBoundLedsProduceRunTimeErrrorAtQueryOn);
+    RUN_TEST_CASE(LedDriver, OutOfBoundLedsProduceRunTimeErrrorAtQueryOff);
+
+
+    
 
 
 

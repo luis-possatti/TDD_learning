@@ -17,6 +17,7 @@ static void update_Hardware(void);
 static bool valid_index(int8_t index);
 static void set_led(int8_t index);
 static void clear_led(int8_t index);
+static void log_out_of_bound(int8_t index);
 
 
 
@@ -45,7 +46,7 @@ void LedDriver_TurnOn(int8_t led_index)
     }
     else
     {
-        RUN_TIME_ERRROR("LED Driver: out-of-bounds LED", led_index);
+        log_out_of_bound(led_index);
     }
 }
 
@@ -58,7 +59,7 @@ void LedDriver_TurnOff(int8_t led_index)
     }
     else
     {
-        // RUN_TIME_ERRROR("LED Driver: out-of-bounds LED", led_index);
+        log_out_of_bound(led_index);
     }
 }
 
@@ -88,6 +89,10 @@ bool LedDriver_IsOn(int8_t led_index)
         {
             result = true;
         }
+    }
+    else
+    {
+        log_out_of_bound(led_index);
     }
 
     return result;
@@ -159,6 +164,10 @@ static void clear_led(int8_t index)
     leds_image &= ~convert_led_index_to_bit(index);
 }
 
+static void log_out_of_bound(int8_t index)
+{
+    RUN_TIME_ERRROR("LED Driver: out-of-bounds LED", index);
+}
 
 
 /*

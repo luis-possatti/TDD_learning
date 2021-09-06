@@ -270,3 +270,33 @@ TEST(LedDriver, OutOfBoundLedsProduceRunTimeErrrorAtTurnOff)
     TEST_ASSERT_EQUAL(17, RuntimeErrorStub_GetLastParameter());
 
 }
+
+TEST(LedDriver, OutOfBoundLedsProduceRunTimeErrrorAtQueryOn)
+{
+
+    LedDriver_IsOn(-1);
+
+    TEST_ASSERT_EQUAL_STRING("LED Driver: out-of-bounds LED", RuntimeErrorStub_GetLastError());
+    TEST_ASSERT_EQUAL(-1, RuntimeErrorStub_GetLastParameter());
+
+    LedDriver_IsOn(17);
+
+    TEST_ASSERT_EQUAL_STRING("LED Driver: out-of-bounds LED", RuntimeErrorStub_GetLastError());
+    TEST_ASSERT_EQUAL(17, RuntimeErrorStub_GetLastParameter());
+
+}
+
+TEST(LedDriver, OutOfBoundLedsProduceRunTimeErrrorAtQueryOff)
+{
+
+    LedDriver_IsOff(-1);
+
+    TEST_ASSERT_EQUAL_STRING("LED Driver: out-of-bounds LED", RuntimeErrorStub_GetLastError());
+    TEST_ASSERT_EQUAL(-1, RuntimeErrorStub_GetLastParameter());
+
+    LedDriver_IsOff(17);
+
+    TEST_ASSERT_EQUAL_STRING("LED Driver: out-of-bounds LED", RuntimeErrorStub_GetLastError());
+    TEST_ASSERT_EQUAL(17, RuntimeErrorStub_GetLastParameter());
+
+}
