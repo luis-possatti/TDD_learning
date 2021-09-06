@@ -12,11 +12,11 @@ enum {
 static uint16_t leds_image;
 
 
-static uint16_t convert_led_index_to_bit(uint8_t index);
+static uint16_t convert_led_index_to_bit(int8_t index);
 static void update_Hardware(void);
-static bool valid_index(uint8_t index);
-static void set_led(uint8_t index);
-static void clear_led(uint8_t index);
+static bool valid_index(int8_t index);
+static void set_led(int8_t index);
+static void clear_led(int8_t index);
 
 
 
@@ -36,7 +36,7 @@ void LedDriver_Creator(uint16_t *led_address)
 }
 
 
-void LedDriver_TurnOn(uint8_t led_index)
+void LedDriver_TurnOn(int8_t led_index)
 {
     if(valid_index(led_index))
     {
@@ -49,7 +49,7 @@ void LedDriver_TurnOn(uint8_t led_index)
     }
 }
 
-void LedDriver_TurnOff(uint8_t led_index)
+void LedDriver_TurnOff(int8_t led_index)
 {
     if(valid_index(led_index))
     {
@@ -77,7 +77,7 @@ void LedDriver_TurnAllOff(void)
     
 }
 
-bool LedDriver_IsOn(uint8_t led_index)
+bool LedDriver_IsOn(int8_t led_index)
 {
     bool result = false;
 
@@ -93,7 +93,7 @@ bool LedDriver_IsOn(uint8_t led_index)
     return result;
 }
 
-bool LedDriver_IsOff(uint8_t led_index)
+bool LedDriver_IsOff(int8_t led_index)
 {
     return !LedDriver_IsOn(led_index);
 }
@@ -119,7 +119,7 @@ bool LedDriver_IsOff(uint8_t led_index)
 
 
 
-static uint16_t convert_led_index_to_bit(uint8_t index)
+static uint16_t convert_led_index_to_bit(int8_t index)
 {
     return (uint16_t) (1 << (index - 1));
 }
@@ -132,7 +132,7 @@ static void update_Hardware(void)
 
 
 
-static bool valid_index(uint8_t index)
+static bool valid_index(int8_t index)
 {
     bool result;
     if((index <= 16) && (index >= 1))
@@ -150,11 +150,11 @@ static bool valid_index(uint8_t index)
 
 
 
-static void set_led(uint8_t index)
+static void set_led(int8_t index)
 {
     leds_image |= convert_led_index_to_bit(index);
 }
-static void clear_led(uint8_t index)
+static void clear_led(int8_t index)
 {
     leds_image &= ~convert_led_index_to_bit(index);
 }
