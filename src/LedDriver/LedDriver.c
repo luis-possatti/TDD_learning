@@ -70,14 +70,18 @@ void LedDriver_TurnAllOff(void)
 
 bool LedDriver_IsOn(uint8_t led_index)
 {
-    if(leds_image & convert_led_index_to_bit(led_index))
+    bool result = false;
+
+    if(valid_index(led_index))
     {
-        return true;
+
+        if(leds_image & convert_led_index_to_bit(led_index))
+        {
+            result = true;
+        }
     }
-    else
-    {
-        return false;
-    }
+
+    return result;
 }
 
 bool LedDriver_IsOff(uint8_t led_index)

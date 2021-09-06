@@ -207,6 +207,28 @@ TEST(LedDriver, TestOutOfBoundsInTurnOff)
     TEST_ASSERT_EQUAL(0xffff, virtualLeds);
 }
 
+/* Any out of bound LED is off */
+TEST(LedDriver, AnyLEDOutOfBoundsIsOff)
+{
+    LedDriver_TurnAllOn();
+
+
+    TEST_ASSERT_FALSE(LedDriver_IsOn(0));
+    TEST_ASSERT_TRUE(LedDriver_IsOff(0));
+
+    TEST_ASSERT_FALSE(LedDriver_IsOn(-1));
+    TEST_ASSERT_TRUE(LedDriver_IsOff(-1));
+
+    TEST_ASSERT_FALSE(LedDriver_IsOn(17));
+    TEST_ASSERT_TRUE(LedDriver_IsOff(17));
+
+    TEST_ASSERT_FALSE(LedDriver_IsOn(19));
+    TEST_ASSERT_TRUE(LedDriver_IsOff(19));
+
+    TEST_ASSERT_FALSE(LedDriver_IsOn(165));
+    TEST_ASSERT_TRUE(LedDriver_IsOff(165));
+}
+
 IGNORE_TEST(LedDriver, OutOfBoundsToDo)
 {
    /* */
