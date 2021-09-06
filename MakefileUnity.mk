@@ -15,7 +15,6 @@ PROJECT_HOME_DIR = .
 PROJECT_SRC_DIR = src
 PROJECT_INCLUDE_DIR = include
 PROJECT_TEST_DIR = tests
-PROJECT_MOCKS_DIR = mocks
 
 
 CPP_PLATFORM = Gcc
@@ -26,26 +25,24 @@ UNITY_WARNINGFLAGS = -Wall -Werror -Wswitch-default
 #UNITY_WARNINGFLAGS += -Wshadow 
 
 SRC_DIRS = \
-	$(PROJECT_SRC_DIR)/LedDriver\
+	$(PROJECT_SRC_DIR)/CircularBuffer\
 
 TEST_SRC_DIRS = \
 	$(PROJECT_TEST_DIR)\
-	$(PROJECT_TEST_DIR)/LedDriver\
+	$(PROJECT_TEST_DIR)/CircularBuffer\
 	$(UNITY_HOME)/unity\
 	$(UNITY_HOME)/src\
     $(UNITY_HOME)/extras/fixture/src\
     $(UNITY_HOME)/extras/fixture/test\
 
 MOCKS_SRC_DIRS = \
-  $(PROJECT_MOCKS_DIR)
 
 INCLUDE_DIRS =\
   .\
   $(UNITY_HOME)/src\
   $(UNITY_HOME)/extras/fixture/src\
   $(UNITY_HOME)/extras/fixture/test\
-  $(PROJECT_INCLUDE_DIR)/LedDriver\
-  $(PROJECT_INCLUDE_DIR)/util\
+  $(PROJECT_INCLUDE_DIR)/CircularBuffer
   
 include $(UNITY_BUILD_HOME)/MakefileWorker.mk
 
