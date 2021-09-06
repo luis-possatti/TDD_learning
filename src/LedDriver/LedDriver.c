@@ -13,6 +13,9 @@ static uint16_t leds_image;
 
 static uint16_t convert_led_index_to_bit(uint8_t index);
 static void update_Hardware(void);
+static bool valid_index(uint8_t index);
+static void set_led(uint8_t index);
+static void clear_led(uint8_t index);
 
 
 
@@ -34,18 +37,18 @@ void LedDriver_Creator(uint16_t *led_address)
 
 void LedDriver_TurnOn(uint8_t led_index)
 {
-    if((led_index <= 16) && (led_index >= 1))
+    if(valid_index(led_index))
     {
-        leds_image |= convert_led_index_to_bit(led_index);
+        set_led(led_index);
         update_Hardware();
     }
 }
 
 void LedDriver_TurnOff(uint8_t led_index)
 {
-    if((led_index <= 16) && (led_index >= 1))
+    if(valid_index(led_index))
     {
-        leds_image &= ~convert_led_index_to_bit(led_index);
+        clear_led(led_index);
         update_Hardware();
     }
 }
@@ -113,6 +116,38 @@ static void update_Hardware(void)
 {
     *led_address_register = leds_image;
 }
+
+
+
+static bool valid_index(uint8_t index)
+{
+    bool result;
+    if((index <= 16) && (index >= 1))
+    {
+        result = true;
+
+    }
+    else
+    {
+        result = false;
+    }
+
+    return result;
+}
+
+
+
+static void set_led(uint8_t index)
+{
+    leds_image |= convert_led_index_to_bit(index);
+}
+static void clear_led(uint8_t index)
+{
+    leds_image &= ~convert_led_index_to_bit(index);
+}
+
+
+
 /*
 ************************************************** 
 * Private functions definitions - END
