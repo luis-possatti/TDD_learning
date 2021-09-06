@@ -36,7 +36,7 @@ The test list below is a remodeled version of the first one, trying to apply the
 
 ## Emptyness
  -  [x] Empty after creation.
- -  [] Create and write one: not empty
+ -  [x] Create and write one: not empty
  -  [] Create, write one and read one: empty
  -  [] Create, write N and read N, with N < $Size: Empty only after N reads
  -  [] Create, write N and read N, with N > $Size: Empty after $size reads

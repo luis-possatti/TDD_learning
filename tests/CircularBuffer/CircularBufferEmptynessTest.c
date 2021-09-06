@@ -27,3 +27,14 @@ TEST(CircularBufferEmpty, BufferIsEmptyAfterCreation)
     TEST_ASSERT_TRUE(CircularBuffer_IsEmpty(buffer_p));
 }
 
+
+/* 
+ * Write one data and ensure buffer is not empty
+ *
+ */
+TEST(CircularBufferEmpty, BufferIsNotEmptyAfterWritingData)
+{
+    CircularBuffer_WriteValue(buffer_p, 0);
+    TEST_ASSERT_FALSE(CircularBuffer_IsEmpty(buffer_p));
+}
+
