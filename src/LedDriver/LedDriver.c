@@ -58,7 +58,7 @@ void LedDriver_TurnOff(int8_t led_index)
     }
     else
     {
-        RUN_TIME_ERRROR("LED Driver: out-of-bounds LED", led_index);
+        // RUN_TIME_ERRROR("LED Driver: out-of-bounds LED", led_index);
     }
 }
 
