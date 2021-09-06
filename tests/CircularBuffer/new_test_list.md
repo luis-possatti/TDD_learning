@@ -28,52 +28,44 @@ The test list below is a remodeled version of the first one, trying to apply the
       - Create a R/W operations sequence that **I already tested**, and then, that **I can trust** that will cause overwrittens and check that the oldest values are missing in the buffer.
 
 ## Buffer creation:
- - Create with size 1 and valid pointer
- - Create with size 10 and valid pointer
- - Create with size 0 and NULL
+ - [x] Create with size 1 and valid pointer
+ - [x] Create with size 10 and valid pointer
+ - [x] Create with size 0 and NULL
 
-## Emptyness and fullness:
- - Empty and not full after creation.
- - Create, write one: not empty and not full
- - Create, write one and read one: empty and not full
- - Create, write N and read N, with N < $Size: Empty only after N reads and never full.
- - Create, write N, with N > $Size. Full after $Size writes.
- - Create, write N and read N, with N > $Size
-   - Not full after first reading starting reading.
-   - Not empty until $size reads
-   - Empty after it 
 
 
 ## Emptyness
- - Empty after creation.
- - Create and write one: not empty
- - Create, write one and read one: empty
- - Create, write N and read N, with N < $Size: Empty only after N reads
- - Create, write N and read N, with N > $Size: Empty after $size reads
+ -  [x] Empty after creation.
+ -  [] Create and write one: not empty
+ -  [] Create, write one and read one: empty
+ -  [] Create, write N and read N, with N < $Size: Empty only after N reads
+ -  [] Create, write N and read N, with N > $Size: Empty after $size reads
 
 ## Fullness
- - after creation: not full.
- - Create, write N with N < $Size: Never full
- - Create, write N with N = $Size: full only after last write
- - Create, write N , with N > $Size: Full after $Size writes until last one
- - Create, write N and read one, with N = $Size: full only after last write, not full after read
- - Create, write N and read one and write one, with N = $Size: not full after read and full again
- - Create, write N and read one and write one, with N > $Size: not full after read and full again
+ -  [x] after creation: not full.
+ -  [] Create, write N with N < $Size: Never full
+ -  [] Create, write N with N = $Size: full only after last write
+ -  [] Create, write N , with N > $Size: Full after $Size writes until last one
+ -  [] Create, write N and read one, with N = $Size: full only after last write, not full after read
+ -  [] Create, write N and read one and write one, with N = $Size: not full after read and full again
+ -  [] Create, write N and read one and write one, with N > $Size: not full after read and full again
 
 
 ## Write operation inform correctly the overwritten occurrence:
- - Create, write until overflow, read one, write two again and ensure write is only sucess when not full
+ - [x] Create and write one time, ensure sucess.
+ - [] Create, write until overflow, read one, write two again and ensure write is only sucess when not full
 
 ## Read sucess:
- - Create, read N times, write until overflows and read until empty times and ensure read is sucess only when not empty
+ - [x] Create and read one time: ensure not sucess.
+ - [] Create, read N times, write until overflows and read until empty times and ensure read is sucess only when not empty
 
 
 ## Write and read like FIFO:
- - Write one value and read same value
- - Write N times same value and read N times same value, N < $Size
- - Write N times a set of distinct values and read N times the same sequence in inverted order, with N < $size
- - Write N times a set of distinct values and read $Size times. The read sequence shall be the inverted sequence of the last $Size writes.
+ -  [] Write one value and read same value
+ -  [] Write N times same value and read N times same value, N < $Size
+ -  [] Write N times a set of distinct values and read N times the same sequence in inverted order, with N < $size
+ -  [] Write N times a set of distinct values and read $Size times. The read sequence shall be the inverted sequence of the last $Size writes.
 
 
 ## Tests with undefined behaviour:
- - What should be the value in the pointer when read request with buffer empty?
+ -  [] What should be the value in the pointer when read request with buffer empty?
