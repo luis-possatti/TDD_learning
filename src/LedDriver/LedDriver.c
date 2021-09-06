@@ -18,6 +18,8 @@ static bool valid_index(int8_t index);
 static void set_led(int8_t index);
 static void clear_led(int8_t index);
 static void log_out_of_bound(int8_t index);
+static uint16_t get_bit(int8_t index);
+
 
 
 
@@ -85,7 +87,7 @@ bool LedDriver_IsOn(int8_t led_index)
     if(valid_index(led_index))
     {
 
-        if(leds_image & convert_led_index_to_bit(led_index))
+        if(get_bit(led_index)) // TODO refactor here
         {
             result = true;
         }
@@ -159,9 +161,15 @@ static void set_led(int8_t index)
 {
     leds_image |= convert_led_index_to_bit(index);
 }
+
 static void clear_led(int8_t index)
 {
     leds_image &= ~convert_led_index_to_bit(index);
+}
+
+static uint16_t get_bit(int8_t index)
+{
+    return leds_image & convert_led_index_to_bit(index);
 }
 
 static void log_out_of_bound(int8_t index)
