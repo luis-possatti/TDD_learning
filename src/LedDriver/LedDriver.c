@@ -1,4 +1,5 @@
 #include "LedDriver.h"
+#include "RunTimeError.h"
 
 /* internal variables, types and prototypes */
 static uint16_t *led_address_register;
@@ -42,6 +43,10 @@ void LedDriver_TurnOn(uint8_t led_index)
         set_led(led_index);
         update_Hardware();
     }
+    else
+    {
+        RUN_TIME_ERRROR("LED Driver: out-of-bounds LED", led_index);
+    }
 }
 
 void LedDriver_TurnOff(uint8_t led_index)
@@ -50,6 +55,10 @@ void LedDriver_TurnOff(uint8_t led_index)
     {
         clear_led(led_index);
         update_Hardware();
+    }
+    else
+    {
+        RUN_TIME_ERRROR("LED Driver: out-of-bounds LED", led_index);
     }
 }
 
