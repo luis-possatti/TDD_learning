@@ -8,6 +8,9 @@ TEST_GROUP_RUNNER(CircularBuffer)
 
     RUN_TEST_CASE(CircularBufferEmpty, BufferIsEmptyAfterCreation);
     RUN_TEST_CASE(CircularBufferEmpty, BufferIsNotEmptyAfterWritingData);
+    RUN_TEST_CASE(CircularBufferEmpty, BufferIsEmptyAfterReadingTheOnlyData);
+    RUN_TEST_CASE(CircularBufferEmpty, BufferIsEmptyAfterReadingAllTheDataInBuffer);
+    RUN_TEST_CASE(CircularBufferEmpty, OverflowOfBufferCapacityNotBreakEmptnessLogic);
 
 
 
@@ -15,7 +18,5 @@ TEST_GROUP_RUNNER(CircularBuffer)
 
     RUN_TEST_CASE(CircularBufferWrite, WriteOneValueToBufferAfterCreation);
     RUN_TEST_CASE(CircularBufferRead, ReadBeforeAnyWrite);
-
-
 }
 
