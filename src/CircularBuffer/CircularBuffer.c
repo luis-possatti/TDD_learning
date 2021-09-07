@@ -40,7 +40,14 @@ bool CircularBuffer_IsEmpty(CircularBuffer_t buffer)
 
 bool CircularBuffer_IsFull(CircularBuffer_t buffer)
 {
-    return false;
+    if(data_on_buffer >= buffer_size)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 
