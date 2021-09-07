@@ -66,6 +66,7 @@ The test list below is a remodeled version of the first one, trying to apply the
  -  [] Write N times a set of distinct values and read N times the same sequence in inverted order, with N < $size
  -  [] Write N times a set of distinct values and read $Size times. The read sequence shall be the inverted sequence of the last $Size writes.
 
-
+## Ensure different modules are independent for each other:
+ - Define some tests to make the module work with different buffers and ensure indepency
 ## Tests with undefined behaviour:
  -  [] What should be the value in the pointer when read request with buffer empty?
