@@ -200,8 +200,13 @@ TEST(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflow)
 */
 TEST(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflowAndDifferentBufferSize)
 {
+    /* Destroy the buffer created in Setup fixture to avoid memory leakage */
+    CircularBuffer_Destroy(buffer_p);
+
+    /* Create a new buffer with bigger size */
     circular_buffer_size = 100;
     buffer_p = CircularBuffer_Create(circular_buffer_size);
+
     /* the dataset */
     const uint8_t dataset_length = 150;
     uint32_t dataset[dataset_length];
