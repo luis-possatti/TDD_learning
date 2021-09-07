@@ -11,6 +11,7 @@ CircularBuffer_struct dummy_buffer;
 uint8_t buffer_size;
 uint8_t data_on_buffer;
 static uint8_t read_index;
+static uint8_t write_index;
 
 static uint32_t values[10];
 
@@ -22,6 +23,7 @@ CircularBuffer_t CircularBuffer_Create(uint8_t size)
         buffer_size = size;
         data_on_buffer = 0;
         read_index = 0;
+        write_index = 0;
         return &dummy_buffer;
     }
     else
@@ -66,12 +68,28 @@ int8_t CircularBuffer_WriteValue(CircularBuffer_t buffer, uint32_t value)
 {
     if(!CircularBuffer_IsFull(buffer))
     {
-        values[data_on_buffer] = value;
+        values[write_index] = value;
         data_on_buffer++; /* writes to a free node */
+        write_index++;
+        if(write_index == buffer_size)
+        {
+            write_index = 0;
+        }
         return WRITE_SUCCESS; 
     }
     else
     {
+        values[write_index] = value;
+        read_index++;
+        if(read_index == buffer_size)
+        {
+            read_index = 0;
+        }
+        write_index++;
+        if(write_index == buffer_size)
+        {
+            write_index = 0;
+        }
         return WRITE_FAILURE; /* overwrites*/
     }
 
@@ -90,6 +108,10 @@ int8_t CircularBuffer_ReadValue(CircularBuffer_t buffer, uint32_t *data_p)
     {
         *data_p = values[read_index];
         read_index++;
+        if(read_index == buffer_size)
+        {
+            read_index = 0;
+        }
         data_on_buffer--;
         return READ_SUCCESS;
     }
