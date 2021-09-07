@@ -1,5 +1,5 @@
 #include "CircularBuffer.h"
-
+#include <stdlib.h>
 
 typedef struct CircularBuffer_struct
 {
@@ -13,7 +13,7 @@ static uint8_t buffer_size;
 static uint8_t data_on_buffer;
 static uint8_t read_index;
 static uint8_t write_index;
-static uint32_t values[10];
+static uint32_t *values;
 
 
 /* Helper functions prototypes */
@@ -35,6 +35,7 @@ CircularBuffer_t CircularBuffer_Create(uint8_t size)
         data_on_buffer = 0;
         read_index = 0;
         write_index = 0;
+        values = malloc(size*sizeof(uint32_t));
         return &dummy_buffer;
     }
     else
@@ -42,6 +43,7 @@ CircularBuffer_t CircularBuffer_Create(uint8_t size)
         return NULL;
     }
 }
+
 
 
 bool CircularBuffer_IsEmpty(CircularBuffer_t buffer)
