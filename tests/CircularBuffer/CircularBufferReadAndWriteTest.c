@@ -46,7 +46,7 @@ TEST(CircularBufferRW, EnsureWriteIsOnlySucessWhenBufferNotFull)
     int number_of_writes = circular_buffer_size + 5;
 
     /* write $number_of_writes to force overflow situation */
-    for(int i = 0; i < number_of_writes; i++)
+    for(uint32_t i = 0; i < number_of_writes; i++)
     {
         if(CircularBuffer_IsFull(buffer_p))
         {
@@ -87,13 +87,13 @@ TEST(CircularBufferRW, ReadIsSucessOnlyIfBufferNotEmpty)
     uint32_t read_value;
     
     /* read the empty buffer 5 times */
-    for(int i = 0; i < 5; i++)
+    for(uint32_t i = 0; i < 5; i++)
     {
         TEST_ASSERT_EQUAL_INT8(FAILURE, CircularBuffer_ReadValue(buffer_p, &read_value));
     }
 
     /* write and overflows the buffer */
-    for(int i = 0; i < circular_buffer_size + 5; i++)
+    for(uint32_t i = 0; i < circular_buffer_size + 5; i++)
     {
         CircularBuffer_WriteValue(buffer_p, 0);
     }
@@ -143,7 +143,7 @@ TEST(CircularBufferRW, WriteAndReadSetOfDataInFIFOMode)
     uint32_t dataset[5] = {0x59, 0xff, 0x81, 0x94, 0xdf};
 
     /* write data to Circular Buffer */
-    for(int i = 0; i < 5; i++)
+    for(uint32_t i = 0; i < 5; i++)
     {
         CircularBuffer_WriteValue(buffer_p, dataset[i]);      
     }
@@ -151,7 +151,7 @@ TEST(CircularBufferRW, WriteAndReadSetOfDataInFIFOMode)
     /* read data from Circular Buffer and check FIFO order */
     uint32_t read_data;
     uint32_t expected_data;
-    for(int i = 0; i < 5; i++)
+    for(uint32_t i = 0; i < 5; i++)
     {
         expected_data = dataset[i];
         CircularBuffer_ReadValue(buffer_p, &read_data);
@@ -175,7 +175,7 @@ TEST(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflow)
         };
 
     /* write data to Circular Buffer */
-    for(int i = 0; i < 15; i++)
+    for(uint32_t i = 0; i < 15; i++)
     {
         CircularBuffer_WriteValue(buffer_p, dataset[i]);      
     }
@@ -183,7 +183,7 @@ TEST(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflow)
     /* read data from Circular Buffer and check FIFO order */
     uint32_t read_data;
     uint32_t expected_data;
-    for(int i = 15 - circular_buffer_size; i < 15; i++)
+    for(uint32_t i = 15 - circular_buffer_size; i < 15; i++)
     {
         expected_data = dataset[i];
         CircularBuffer_ReadValue(buffer_p, &read_data);
@@ -210,13 +210,13 @@ TEST(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflowAndDifferentBufferSize
     /* the dataset */
     const uint8_t dataset_length = 150;
     uint32_t dataset[dataset_length];
-    for(int i = 0; i < dataset_length; i++)
+    for(uint32_t i = 0; i < dataset_length; i++)
     {
         dataset[i] = i;
     }
 
     /* write data to Circular Buffer */
-    for(int i = 0; i < dataset_length; i++)
+    for(uint32_t i = 0; i < dataset_length; i++)
     {
         CircularBuffer_WriteValue(buffer_p, dataset[i]);      
     }
@@ -224,7 +224,7 @@ TEST(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflowAndDifferentBufferSize
     /* read data from Circular Buffer and check FIFO order */
     uint32_t read_data;
     uint32_t expected_data;
-    for(int i = dataset_length - circular_buffer_size; i < dataset_length; i++)
+    for(uint32_t i = dataset_length - circular_buffer_size; i < dataset_length; i++)
     {
         expected_data = dataset[i];
         CircularBuffer_ReadValue(buffer_p, &read_data);
@@ -249,13 +249,13 @@ TEST(CircularBufferRW, CreateAndTestReadWriteWithBufferOfMaximumSize)
     /* the dataset */
     const uint16_t dataset_length = 300;
     uint32_t dataset[dataset_length];
-    for(int i = 0; i < dataset_length; i++)
+    for(uint32_t i = 0; i < dataset_length; i++)
     {
         dataset[i] = i;
     }
 
     /* write data to Circular Buffer */
-    for(int i = 0; i < dataset_length; i++)
+    for(uint32_t i = 0; i < dataset_length; i++)
     {
         CircularBuffer_WriteValue(buffer_p, dataset[i]);      
     }
@@ -263,7 +263,7 @@ TEST(CircularBufferRW, CreateAndTestReadWriteWithBufferOfMaximumSize)
     /* read data from Circular Buffer and check FIFO order */
     uint32_t read_data;
     uint32_t expected_data;
-    for(int i = dataset_length - circular_buffer_size; i < dataset_length; i++)
+    for(uint32_t i = dataset_length - circular_buffer_size; i < dataset_length; i++)
     {
         expected_data = dataset[i];
         CircularBuffer_ReadValue(buffer_p, &read_data);

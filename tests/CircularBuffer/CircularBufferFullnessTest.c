@@ -45,7 +45,7 @@ TEST(CircularBufferFull, BufferFullOnlyAfterWritingToAllItCapability)
     }
 
     /* Write remaining data*/
-    for(int i = circular_buffer_size - 1; i < number_of_data; i++)
+    for(uint32_t i = circular_buffer_size - 1; i < number_of_data; i++)
     {
         CircularBuffer_WriteValue(buffer_p, 0);
         TEST_ASSERT_TRUE(CircularBuffer_IsFull(buffer_p));
