@@ -53,14 +53,14 @@ The test list below is a remodeled version of the first one, trying to apply the
 
 ## Read sucess:
  - [x] Create and read one time: ensure not sucess.
- - [] Create, read N times, write until overflows and read until empty times and ensure read is sucess only when not empty
+ - [x] Create, read N times, write until overflows and read until empty times and ensure read is sucess only when not empty
 
 
 ## Write and read like FIFO:
- -  [] Write one value and read same value
- -  [] Write N times same value and read N times same value, N < $Size
- -  [] Write N times a set of distinct values and read N times the same sequence in inverted order, with N < $size
- -  [] Write N times a set of distinct values and read $Size times. The read sequence shall be the inverted sequence of the last $Size writes.
+ - [x] Write one value and read same value
+ - [] Write N times same value and read N times same value, N < $Size
+ - [] Write N times a set of distinct values and read N times the same sequence in inverted order, with N < $size
+ - [] Write N times a set of distinct values and read $Size times. The read sequence shall be the inverted sequence of the last $Size writes.
 
 ## Ensure different modules are independent for each other:
  - Define some tests to make the module work with different buffers and ensure indepency
