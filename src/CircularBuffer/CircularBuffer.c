@@ -85,7 +85,8 @@ int8_t CircularBuffer_ReadValue(CircularBuffer_t buffer, uint32_t *data_p)
     if(!CircularBuffer_IsEmpty(buffer))
     {
         data_on_buffer--;
-        return 0;
+        *data_p = 0;
+        return READ_SUCCESS;
     }
     else
     {
