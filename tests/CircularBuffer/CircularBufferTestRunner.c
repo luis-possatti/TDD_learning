@@ -26,6 +26,7 @@ TEST_GROUP_RUNNER(CircularBuffer)
     RUN_TEST_CASE(CircularBufferRW, WriteAndReadSameValue);
     RUN_TEST_CASE(CircularBufferRW, WriteAndReadSameValue_OtherDataValue);
     RUN_TEST_CASE(CircularBufferRW, WriteAndReadSetOfDataInFIFOMode);
+    RUN_TEST_CASE(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflow);
 
 
 

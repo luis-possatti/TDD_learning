@@ -2,6 +2,7 @@
 #include "CircularBuffer.h"
 
 
+
 uint8_t circular_buffer_size;
 CircularBuffer_t buffer_p;
 
@@ -132,15 +133,17 @@ TEST(CircularBufferRW, WriteAndReadSameValue_OtherDataValue)
 
 }
 
-#define DATASET_LENGTH 5
-/* Case to ensure a set of different value written is read in FIFO order */
+/*
+ * Case to ensure a set of different value written is read in FIFO order. 
+ * In this case, the dataset is smaller than the buffer size.    
+*/
 TEST(CircularBufferRW, WriteAndReadSetOfDataInFIFOMode)
 {
     /* the dataset */
-    uint32_t dataset[DATASET_LENGTH] = {0x59, 0xff, 0x81, 0x94, 0xdf};
+    uint32_t dataset[5] = {0x59, 0xff, 0x81, 0x94, 0xdf};
 
     /* write data to Circular Buffer */
-    for(int i = 0; i < DATASET_LENGTH; i++)
+    for(int i = 0; i < 5; i++)
     {
         CircularBuffer_WriteValue(buffer_p, dataset[i]);      
     }
@@ -148,7 +151,39 @@ TEST(CircularBufferRW, WriteAndReadSetOfDataInFIFOMode)
     /* read data from Circular Buffer and check FIFO order */
     uint32_t read_data;
     uint32_t expected_data;
-    for(int i = 0; i < DATASET_LENGTH; i++)
+    for(int i = 0; i < 5; i++)
+    {
+        expected_data = dataset[i];
+        CircularBuffer_ReadValue(buffer_p, &read_data);
+        TEST_ASSERT_EQUAL_UINT32(expected_data, read_data);
+    }
+
+}
+
+
+/*
+ * Case to ensure a set of different value written is read in FIFO order. 
+ * In this case, the dataset is bigger than the buffer size.    
+*/
+TEST(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflow)
+{
+    /* the dataset */
+    uint32_t dataset[15] = {
+            0x59, 0xff, 0x81, 0x94, 0xdf,
+            0x12, 0x6c, 0xe7, 0xd1, 0xd0,
+            0x32, 0x54, 0x8f, 0x9b, 0xe9,
+        };
+
+    /* write data to Circular Buffer */
+    for(int i = 0; i < 15; i++)
+    {
+        CircularBuffer_WriteValue(buffer_p, dataset[i]);      
+    }
+
+    /* read data from Circular Buffer and check FIFO order */
+    uint32_t read_data;
+    uint32_t expected_data;
+    for(int i = 5; i < 15; i++)
     {
         expected_data = dataset[i];
         CircularBuffer_ReadValue(buffer_p, &read_data);
