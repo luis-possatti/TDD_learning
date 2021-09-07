@@ -3,7 +3,7 @@
 
 
 
-uint8_t circular_buffer_size;
+uint16_t circular_buffer_size;
 CircularBuffer_t buffer_p;
 
 enum {
@@ -209,6 +209,45 @@ TEST(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflowAndDifferentBufferSize
 
     /* the dataset */
     const uint8_t dataset_length = 150;
+    uint32_t dataset[dataset_length];
+    for(int i = 0; i < dataset_length; i++)
+    {
+        dataset[i] = i;
+    }
+
+    /* write data to Circular Buffer */
+    for(int i = 0; i < dataset_length; i++)
+    {
+        CircularBuffer_WriteValue(buffer_p, dataset[i]);      
+    }
+
+    /* read data from Circular Buffer and check FIFO order */
+    uint32_t read_data;
+    uint32_t expected_data;
+    for(int i = dataset_length - circular_buffer_size; i < dataset_length; i++)
+    {
+        expected_data = dataset[i];
+        CircularBuffer_ReadValue(buffer_p, &read_data);
+        TEST_ASSERT_EQUAL_HEX32(expected_data, read_data);
+    }
+
+}
+
+
+/*
+ * Case to ensure the Creation and Read And Write operation with a buffer of maximum size works OK. 
+*/
+TEST(CircularBufferRW, CreateAndTestReadWriteWithBufferOfMaximumSize)
+{
+    /* Destroy the buffer created in Setup fixture to avoid memory leakage */
+    CircularBuffer_Destroy(buffer_p);
+
+    /* Create a new buffer with bigger size */
+    circular_buffer_size = 256;
+    buffer_p = CircularBuffer_Create(circular_buffer_size);
+
+    /* the dataset */
+    const uint16_t dataset_length = 300;
     uint32_t dataset[dataset_length];
     for(int i = 0; i < dataset_length; i++)
     {

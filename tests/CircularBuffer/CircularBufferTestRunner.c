@@ -7,6 +7,7 @@ TEST_GROUP_RUNNER(CircularBuffer)
     RUN_TEST_CASE(CircularBufferCreation, CreateBufferSize0);
     RUN_TEST_CASE(CircularBufferCreation, CreateBufferSizeMax);
 
+
     RUN_TEST_CASE(CircularBufferEmpty, BufferIsEmptyAfterCreation);
     RUN_TEST_CASE(CircularBufferEmpty, BufferIsNotEmptyAfterWritingData);
     RUN_TEST_CASE(CircularBufferEmpty, BufferIsEmptyAfterReadingTheOnlyData);
@@ -29,6 +30,7 @@ TEST_GROUP_RUNNER(CircularBuffer)
     RUN_TEST_CASE(CircularBufferRW, WriteAndReadSetOfDataInFIFOMode);
     RUN_TEST_CASE(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflow);
     RUN_TEST_CASE(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflowAndDifferentBufferSize);
+    RUN_TEST_CASE(CircularBufferRW, CreateAndTestReadWriteWithBufferOfMaximumSize);
 
 
 

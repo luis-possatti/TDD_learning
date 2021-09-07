@@ -12,7 +12,7 @@ typedef struct CircularBuffer_struct * CircularBuffer_t;
 
 
 
-CircularBuffer_t CircularBuffer_Create(uint8_t size);
+CircularBuffer_t CircularBuffer_Create(uint16_t size);
 
 void CircularBuffer_Destroy(CircularBuffer_t buffer_p);
 

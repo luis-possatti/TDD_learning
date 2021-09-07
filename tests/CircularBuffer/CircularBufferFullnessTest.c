@@ -2,7 +2,7 @@
 #include "CircularBuffer.h"
 
 
-uint8_t circular_buffer_size;
+uint16_t circular_buffer_size;
 CircularBuffer_t buffer_p;
 
 
