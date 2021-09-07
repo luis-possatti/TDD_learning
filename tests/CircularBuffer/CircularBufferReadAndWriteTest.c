@@ -117,3 +117,17 @@ TEST(CircularBufferRW, WriteAndReadSameValue)
     TEST_ASSERT_EQUAL_UINT32(data_write, data_read);
 
 }
+
+/* Case to ensure the data written is the same read */
+TEST(CircularBufferRW, WriteAndReadSameValue_OtherDataValue)
+{
+    uint32_t data_write = 0x81;
+    uint32_t data_read = 0xff;
+
+    
+    CircularBuffer_WriteValue(buffer_p, data_write);
+    CircularBuffer_ReadValue(buffer_p, &data_read);
+
+    TEST_ASSERT_EQUAL_UINT32(data_write, data_read);
+
+}

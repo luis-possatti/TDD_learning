@@ -58,7 +58,7 @@ The test list below is a remodeled version of the first one, trying to apply the
 
 ## Write and read like FIFO:
  - [x] Write one value and read same value
- - [] Write N times same value and read N times same value, N < $Size
+ - [x] Write different value and read the written one
  - [] Write N times a set of distinct values and read N times the same sequence in inverted order, with N < $size
  - [] Write N times a set of distinct values and read $Size times. The read sequence shall be the inverted sequence of the last $Size writes.
 
