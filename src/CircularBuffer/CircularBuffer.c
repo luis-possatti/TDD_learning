@@ -9,10 +9,10 @@ typedef struct CircularBuffer_struct
 
 
 static CircularBuffer_struct dummy_buffer;
-static uint8_t buffer_size;
-static uint8_t data_on_buffer;
-static uint8_t read_index;
-static uint8_t write_index;
+static uint16_t buffer_size;
+static uint16_t data_on_buffer;
+static uint16_t read_index;
+static uint16_t write_index;
 static uint32_t *values;
 
 
