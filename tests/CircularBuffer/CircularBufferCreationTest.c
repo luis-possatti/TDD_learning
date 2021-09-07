@@ -52,3 +52,13 @@ TEST(CircularBufferCreation, CreateBufferSizeMax)
 }
 
 
+/*
+ * This test case cover a circular buffer creation with size bigger than max
+*/
+TEST(CircularBufferCreation, CreateBufferSizeOutOfBounds)
+{
+    buffer_p = CircularBuffer_Create(257);
+    TEST_ASSERT_TRUE(buffer_p == NULL)
+}
+
+

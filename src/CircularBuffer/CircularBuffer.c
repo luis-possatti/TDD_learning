@@ -27,9 +27,9 @@ static void update_write_index(void);
 */
 
 
-CircularBuffer_t CircularBuffer_Create(uint8_t size)
+CircularBuffer_t CircularBuffer_Create(uint16_t size)
 {
-    if(size > 0)
+    if((size > 0) && (size <= 256))
     {
         buffer_size = size;
         data_on_buffer = 0;
