@@ -24,7 +24,7 @@ TEST_TEAR_DOWN(CircularBufferRW)
 
 }
 
-TEST(CircularBufferRW, WriteOneValueToBufferAfterCreation)
+TEST(CircularBufferRW, WriteSuccessfullyToBufferAfterCreation)
 {
     uint32_t value = 55;
     TEST_ASSERT_EQUAL_INT8(SUCCESS, CircularBuffer_WriteValue(buffer_p, value));
