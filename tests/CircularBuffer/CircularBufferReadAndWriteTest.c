@@ -64,10 +64,43 @@ TEST(CircularBufferRW, EnsureWriteIsOnlySucessWhenBufferNotFull)
     TEST_ASSERT_EQUAL_INT8(FAILURE, CircularBuffer_WriteValue(buffer_p, value));
 }
 
-
-TEST(CircularBufferRW, ReadBeforeAnyWrite)
+/* Ensure that a failure is returned if buffer is read right after creation */
+TEST(CircularBufferRW, ReadBeforeAnyWriteIsAFailure)
 {
     uint32_t read_value;
     TEST_ASSERT_EQUAL_INT8(FAILURE, CircularBuffer_ReadValue(buffer_p, &read_value));
+}
+
+/* 
+ * Ensure that the result of read is compatible with the emptyness state of the buffer:
+ *  - Buffer empty: result is failure
+ *  - Buffer not empty: result is sucess
+ * 
+ * The circular buffer will transit and it will be read in the following states:
+ *  - Empty after creation
+ *  - Full after overflow
+ *  - Empty again after reading all the data
+*/
+TEST(CircularBufferRW, ReadIsSucessOnlyIfBufferNotEmpty)
+{
+    uint32_t read_value;
+    
+    /* read the empty buffer 5 times */
+    for(int i = 0; i < 5; i++)
+    {
+        TEST_ASSERT_EQUAL_INT8(FAILURE, CircularBuffer_ReadValue(buffer_p, &read_value));
+    }
+
+    /* write and overflows the buffer */
+    for(int i = 0; i < circular_buffer_size + 5; i++)
+    {
+        CircularBuffer_WriteValue(buffer_p, 0);
+    }
+
+    /* read until buffer is not empty*/
+    while(!CircularBuffer_IsEmpty(buffer_p))
+    {
+        TEST_ASSERT_EQUAL_INT8(SUCCESS, CircularBuffer_ReadValue(buffer_p, &read_value));
+    }
 }
 

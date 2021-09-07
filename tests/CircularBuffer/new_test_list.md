@@ -49,7 +49,7 @@ The test list below is a remodeled version of the first one, trying to apply the
 
 ## Write operation inform correctly the overwritten occurrence:
  - [x] Create and write one time, ensure sucess.
- - [] Create, write until overflow, read one, write two again and ensure write is only sucess when not full
+ - [x] Create, write until overflow, read one, write two again and ensure write is only sucess when not full
 
 ## Read sucess:
  - [x] Create and read one time: ensure not sucess.
