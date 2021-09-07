@@ -42,4 +42,13 @@ TEST(CircularBufferCreation, CreateBufferSize0)
     TEST_ASSERT_TRUE(buffer_p == NULL)
 }
 
+/*
+ * This test case cover a circular buffer creation with size Maximum Size
+*/
+TEST(CircularBufferCreation, CreateBufferSizeMax)
+{
+    buffer_p = CircularBuffer_Create(256);
+    TEST_ASSERT_FALSE(buffer_p == NULL)
+}
+
 
