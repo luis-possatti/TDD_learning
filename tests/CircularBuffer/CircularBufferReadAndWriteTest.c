@@ -5,6 +5,11 @@
 uint8_t circular_buffer_size;
 CircularBuffer_t buffer_p;
 
+enum {
+    SUCCESS = 0,
+    FAILURE = -1
+};
+
 
 TEST_GROUP(CircularBufferRW);
 
@@ -19,18 +24,10 @@ TEST_TEAR_DOWN(CircularBufferRW)
 
 }
 
-TEST(CircularBufferRW, ReadBeforeAnyWrite)
-{
-    uint32_t read_value;
-    int8_t read_result = CircularBuffer_ReadValue(buffer_p, &read_value);
-    TEST_ASSERT_EQUAL(-1, read_result);
-}
-
 TEST(CircularBufferRW, WriteOneValueToBufferAfterCreation)
 {
     uint32_t value = 55;
-    int8_t write_result = CircularBuffer_WriteValue(buffer_p, value);
-    TEST_ASSERT_EQUAL(0, write_result);
+    TEST_ASSERT_EQUAL_INT8(SUCCESS, CircularBuffer_WriteValue(buffer_p, value));
 }
 
 /*
@@ -47,10 +44,6 @@ TEST(CircularBufferRW, EnsureWriteIsOnlySucessWhenBufferNotFull)
 
     int number_of_writes = circular_buffer_size + 5;
 
-    enum {
-        SUCESS = 0,
-        FAILURE = -1
-    };
     /* write $number_of_writes to force overflow situation */
     for(int i = 0; i < number_of_writes; i++)
     {
@@ -60,13 +53,21 @@ TEST(CircularBufferRW, EnsureWriteIsOnlySucessWhenBufferNotFull)
         }
         else
         {
-            TEST_ASSERT_EQUAL_INT8(SUCESS, CircularBuffer_WriteValue(buffer_p, value));
+            TEST_ASSERT_EQUAL_INT8(SUCCESS, CircularBuffer_WriteValue(buffer_p, value));
         }
     }
 
     /* read one data and ensure the next two writes are sucess and failures */
     uint32_t data;
     CircularBuffer_ReadValue(buffer_p, &data);
-    TEST_ASSERT_EQUAL_INT8(SUCESS, CircularBuffer_WriteValue(buffer_p, value));
+    TEST_ASSERT_EQUAL_INT8(SUCCESS, CircularBuffer_WriteValue(buffer_p, value));
     TEST_ASSERT_EQUAL_INT8(FAILURE, CircularBuffer_WriteValue(buffer_p, value));
 }
+
+
+TEST(CircularBufferRW, ReadBeforeAnyWrite)
+{
+    uint32_t read_value;
+    TEST_ASSERT_EQUAL_INT8(FAILURE, CircularBuffer_ReadValue(buffer_p, &read_value));
+}
+
