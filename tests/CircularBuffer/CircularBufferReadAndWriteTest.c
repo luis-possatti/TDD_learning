@@ -183,7 +183,43 @@ TEST(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflow)
     /* read data from Circular Buffer and check FIFO order */
     uint32_t read_data;
     uint32_t expected_data;
-    for(int i = 5; i < 15; i++)
+    for(int i = 15 - circular_buffer_size; i < 15; i++)
+    {
+        expected_data = dataset[i];
+        CircularBuffer_ReadValue(buffer_p, &read_data);
+        TEST_ASSERT_EQUAL_HEX32(expected_data, read_data);
+    }
+
+}
+
+
+/*
+ * Case to ensure a set of different value written is read in FIFO order. 
+ * In this case, the dataset is bigger than the buffer size and the buffer has a lenght
+ * different than the other cases.    
+*/
+TEST(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflowAndDifferentBufferSize)
+{
+    circular_buffer_size = 100;
+    buffer_p = CircularBuffer_Create(circular_buffer_size);
+    /* the dataset */
+    const uint8_t dataset_length = 150;
+    uint32_t dataset[dataset_length];
+    for(int i = 0; i < dataset_length; i++)
+    {
+        dataset[i] = i;
+    }
+
+    /* write data to Circular Buffer */
+    for(int i = 0; i < dataset_length; i++)
+    {
+        CircularBuffer_WriteValue(buffer_p, dataset[i]);      
+    }
+
+    /* read data from Circular Buffer and check FIFO order */
+    uint32_t read_data;
+    uint32_t expected_data;
+    for(int i = dataset_length - circular_buffer_size; i < dataset_length; i++)
     {
         expected_data = dataset[i];
         CircularBuffer_ReadValue(buffer_p, &read_data);
