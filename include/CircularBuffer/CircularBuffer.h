@@ -14,6 +14,8 @@ typedef struct CircularBuffer_struct * CircularBuffer_t;
 
 CircularBuffer_t CircularBuffer_Create(uint8_t size);
 
+void CircularBuffer_Destroy(CircularBuffer_t buffer_p);
+
 bool CircularBuffer_IsEmpty(CircularBuffer_t buffer);
 
 bool CircularBuffer_IsFull(CircularBuffer_t buffer);

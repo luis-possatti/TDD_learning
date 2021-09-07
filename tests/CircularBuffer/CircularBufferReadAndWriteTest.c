@@ -22,7 +22,7 @@ TEST_SETUP(CircularBufferRW)
 
 TEST_TEAR_DOWN(CircularBufferRW)
 {
-
+    CircularBuffer_Destroy(buffer_p);
 }
 
 TEST(CircularBufferRW, WriteSuccessfullyToBufferAfterCreation)

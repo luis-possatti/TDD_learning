@@ -12,7 +12,7 @@ TEST_SETUP(CircularBufferCreation)
 
 TEST_TEAR_DOWN(CircularBufferCreation)
 {
-
+    CircularBuffer_Destroy(buffer_p);
 }
 
 /*

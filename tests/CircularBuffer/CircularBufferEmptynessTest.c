@@ -18,7 +18,7 @@ TEST_SETUP(CircularBufferEmpty)
 
 TEST_TEAR_DOWN(CircularBufferEmpty)
 {
-
+    CircularBuffer_Destroy(buffer_p);
 }
 
 

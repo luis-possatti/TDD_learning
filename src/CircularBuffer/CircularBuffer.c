@@ -44,6 +44,14 @@ CircularBuffer_t CircularBuffer_Create(uint8_t size)
     }
 }
 
+void CircularBuffer_Destroy(CircularBuffer_t buffer_p)
+{
+    if(values != NULL)
+    {
+        free(values);
+        values = NULL;
+    }
+}
 
 
 bool CircularBuffer_IsEmpty(CircularBuffer_t buffer)
