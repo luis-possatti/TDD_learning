@@ -118,7 +118,7 @@ TEST(CircularBufferRW, WriteAndReadSameValue)
 
 }
 
-/* Case to ensure the data written is the same read */
+/* Case to ensure the data written is the same read for other value */
 TEST(CircularBufferRW, WriteAndReadSameValue_OtherDataValue)
 {
     uint32_t data_write = 0x81;
@@ -129,5 +129,30 @@ TEST(CircularBufferRW, WriteAndReadSameValue_OtherDataValue)
     CircularBuffer_ReadValue(buffer_p, &data_read);
 
     TEST_ASSERT_EQUAL_UINT32(data_write, data_read);
+
+}
+
+#define DATASET_LENGTH 5
+/* Case to ensure a set of different value written is read in FIFO order */
+TEST(CircularBufferRW, WriteAndReadSetOfDataInFIFOMode)
+{
+    /* the dataset */
+    uint32_t dataset[DATASET_LENGTH] = {0x59, 0xff, 0x81, 0x94, 0xdf};
+
+    /* write data to Circular Buffer */
+    for(int i = 0; i < DATASET_LENGTH; i++)
+    {
+        CircularBuffer_WriteValue(buffer_p, dataset[i]);      
+    }
+
+    /* read data from Circular Buffer and check FIFO order */
+    uint32_t read_data;
+    uint32_t expected_data;
+    for(int i = 0; i < DATASET_LENGTH; i++)
+    {
+        expected_data = dataset[i];
+        CircularBuffer_ReadValue(buffer_p, &read_data);
+        TEST_ASSERT_EQUAL_UINT32(expected_data, read_data);
+    }
 
 }
