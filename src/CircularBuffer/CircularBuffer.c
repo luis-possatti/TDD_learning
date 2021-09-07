@@ -7,13 +7,24 @@ typedef struct CircularBuffer_struct
 } CircularBuffer_struct;
 
 
-CircularBuffer_struct dummy_buffer;
-uint8_t buffer_size;
-uint8_t data_on_buffer;
+
+static CircularBuffer_struct dummy_buffer;
+static uint8_t buffer_size;
+static uint8_t data_on_buffer;
 static uint8_t read_index;
 static uint8_t write_index;
-
 static uint32_t values[10];
+
+
+/* Helper functions prototypes */
+static void update_read_index(void);
+static void update_write_index(void);
+
+/*
+************************************************** 
+* Public functions definitions - INIT
+**************************************************
+*/
 
 
 CircularBuffer_t CircularBuffer_Create(uint8_t size)
@@ -70,26 +81,14 @@ int8_t CircularBuffer_WriteValue(CircularBuffer_t buffer, uint32_t value)
     {
         values[write_index] = value;
         data_on_buffer++; /* writes to a free node */
-        write_index++;
-        if(write_index == buffer_size)
-        {
-            write_index = 0;
-        }
+        update_write_index();
         return WRITE_SUCCESS; 
     }
     else
     {
         values[write_index] = value;
-        read_index++;
-        if(read_index == buffer_size)
-        {
-            read_index = 0;
-        }
-        write_index++;
-        if(write_index == buffer_size)
-        {
-            write_index = 0;
-        }
+        update_read_index();
+        update_write_index();
         return WRITE_FAILURE; /* overwrites*/
     }
 
@@ -107,11 +106,7 @@ int8_t CircularBuffer_ReadValue(CircularBuffer_t buffer, uint32_t *data_p)
     if(!CircularBuffer_IsEmpty(buffer))
     {
         *data_p = values[read_index];
-        read_index++;
-        if(read_index == buffer_size)
-        {
-            read_index = 0;
-        }
+        update_read_index();
         data_on_buffer--;
         return READ_SUCCESS;
     }
@@ -120,3 +115,45 @@ int8_t CircularBuffer_ReadValue(CircularBuffer_t buffer, uint32_t *data_p)
         return READ_FAILURE;
     }
 }
+
+
+/*
+************************************************** 
+* Public functions definitions - END
+**************************************************
+*/
+
+
+/*
+************************************************** 
+* Helper functions definitions - INIT
+**************************************************
+*/
+
+
+
+
+static void update_read_index(void)
+{
+    read_index++;
+    if(read_index == buffer_size)
+    {
+        read_index = 0;
+    }
+}
+
+static void update_write_index(void)
+{
+    write_index++;
+    if(write_index == buffer_size)
+    {
+        write_index = 0;
+    }
+}
+
+/*
+************************************************** 
+* Helper functions definitions - END
+**************************************************
+*/
+
