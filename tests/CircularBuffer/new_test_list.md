@@ -63,7 +63,6 @@ The test list below is a remodeled version of the first one, trying to apply the
  - [x] Write N times a set of distinct values and read $Size times. The read sequence shall be the inverted sequence of the last $Size writes.
  - [ ] Repeat with size of buffer 100
  - [ ] Repeat with maximum buffer size 256
- - [ ] Check if current logic has some flaw
 ## Ensure different modules are independent for each other:
  - Define some tests to make the module work with different buffers and ensure indepency
 ## Tests with undefined behaviour:
