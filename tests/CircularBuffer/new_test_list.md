@@ -43,8 +43,7 @@ The test list below is a remodeled version of the first one, trying to apply the
 
 ## Fullness
  -  [x] after creation: not full.
- -  [] Create, write N with N = $Size: full only after last write
- -  [] Create, write N , with N > $Size: Full after $Size writes until last one
+ -  [x] Create, write N , with N > $Size: Full after $Size writes until last one
  -  [] Create, write N and read one, with N = $Size: full only after last write, not full after read
  -  [] Create, write N and read one and write one, with N = $Size: not full after read and full again
  -  [] Create, write N and read one and write one, with N > $Size: not full after read and full again

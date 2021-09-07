@@ -15,7 +15,7 @@ TEST_GROUP_RUNNER(CircularBuffer)
 
 
     RUN_TEST_CASE(CircularBufferFull, BufferNotFullAfterCreation);
-    RUN_TEST_CASE(CircularBufferFull, BufferNotFullWhenWritingLessDataThanItsSize)
+    RUN_TEST_CASE(CircularBufferFull, BufferFullOnlyAfterWritingToAllItCapability)
 
     RUN_TEST_CASE(CircularBufferWrite, WriteOneValueToBufferAfterCreation);
     RUN_TEST_CASE(CircularBufferRead, ReadBeforeAnyWrite);

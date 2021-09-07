@@ -27,23 +27,28 @@ TEST(CircularBufferFull, BufferNotFullAfterCreation)
 }
 
 /*
- * Create, write N with N = $Size: full only after last write
+ * Create, write N with N > $Size: full only after writing $Size data.
  * Ensure buffer is only full after writting same number of data
- * than its size.
+ * than its size. Every subsequent write makes it full
  * 
  */
-TEST(CircularBufferFull, BufferNotFullWhenWritingLessDataThanItsSize)
+TEST(CircularBufferFull, BufferFullOnlyAfterWritingToAllItCapability)
 {
-    uint8_t number_of_data = circular_buffer_size;
+    uint8_t number_of_data = circular_buffer_size + 5;
 
-    /* Write all the data except the last one*/
+    /* Write $Size - 1 data*/
     int i;
-    for(i = 0; i < number_of_data - 1; i++)
+    for(i = 0; i < circular_buffer_size - 1; i++)
     {
         CircularBuffer_WriteValue(buffer_p, 0);
         TEST_ASSERT_FALSE(CircularBuffer_IsFull(buffer_p));
     }
 
-    CircularBuffer_WriteValue(buffer_p, 0);
-    TEST_ASSERT_TRUE(CircularBuffer_IsFull(buffer_p));
+    /* Write remaining data*/
+    for(int i = circular_buffer_size - 1; i < number_of_data; i++)
+    {
+        CircularBuffer_WriteValue(buffer_p, 0);
+        TEST_ASSERT_TRUE(CircularBuffer_IsFull(buffer_p));
+    }
 }
+
