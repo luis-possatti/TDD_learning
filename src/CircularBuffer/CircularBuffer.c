@@ -10,8 +10,9 @@ typedef struct CircularBuffer_struct
 CircularBuffer_struct dummy_buffer;
 uint8_t buffer_size;
 uint8_t data_on_buffer;
+static uint8_t read_index;
 
-static uint32_t last_value;
+static uint32_t values[10];
 
 
 CircularBuffer_t CircularBuffer_Create(uint8_t size)
@@ -20,6 +21,7 @@ CircularBuffer_t CircularBuffer_Create(uint8_t size)
     {
         buffer_size = size;
         data_on_buffer = 0;
+        read_index = 0;
         return &dummy_buffer;
     }
     else
@@ -64,8 +66,8 @@ int8_t CircularBuffer_WriteValue(CircularBuffer_t buffer, uint32_t value)
 {
     if(!CircularBuffer_IsFull(buffer))
     {
+        values[data_on_buffer] = value;
         data_on_buffer++; /* writes to a free node */
-        last_value = value;
         return WRITE_SUCCESS; 
     }
     else
@@ -86,8 +88,9 @@ int8_t CircularBuffer_ReadValue(CircularBuffer_t buffer, uint32_t *data_p)
 {
     if(!CircularBuffer_IsEmpty(buffer))
     {
+        *data_p = values[read_index];
+        read_index++;
         data_on_buffer--;
-        *data_p = last_value;
         return READ_SUCCESS;
     }
     else
