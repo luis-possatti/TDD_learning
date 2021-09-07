@@ -155,7 +155,7 @@ TEST(CircularBufferRW, WriteAndReadSetOfDataInFIFOMode)
     {
         expected_data = dataset[i];
         CircularBuffer_ReadValue(buffer_p, &read_data);
-        TEST_ASSERT_EQUAL_UINT32(expected_data, read_data);
+        TEST_ASSERT_EQUAL_HEX32(expected_data, read_data);
     }
 
 }
@@ -187,7 +187,7 @@ TEST(CircularBufferRW, ReadSetOfDataInFIFOModeWithOverflow)
     {
         expected_data = dataset[i];
         CircularBuffer_ReadValue(buffer_p, &read_data);
-        TEST_ASSERT_EQUAL_UINT32(expected_data, read_data);
+        TEST_ASSERT_EQUAL_HEX32(expected_data, read_data);
     }
 
 }
