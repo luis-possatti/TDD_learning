@@ -6,21 +6,27 @@ uint8_t circular_buffer_size;
 CircularBuffer_t buffer_p;
 
 
-TEST_GROUP(CircularBufferWrite);
+TEST_GROUP(CircularBufferRW);
 
-TEST_SETUP(CircularBufferWrite)
+TEST_SETUP(CircularBufferRW)
 {
     circular_buffer_size = 10;
     buffer_p = CircularBuffer_Create(circular_buffer_size);
 }
 
-TEST_TEAR_DOWN(CircularBufferWrite)
+TEST_TEAR_DOWN(CircularBufferRW)
 {
 
 }
 
+TEST(CircularBufferRW, ReadBeforeAnyWrite)
+{
+    uint32_t read_value;
+    int8_t read_result = CircularBuffer_ReadValue(buffer_p, &read_value);
+    TEST_ASSERT_EQUAL(-1, read_result);
+}
 
-TEST(CircularBufferWrite, WriteOneValueToBufferAfterCreation)
+TEST(CircularBufferRW, WriteOneValueToBufferAfterCreation)
 {
     uint32_t value = 55;
     int8_t write_result = CircularBuffer_WriteValue(buffer_p, value);
@@ -35,7 +41,7 @@ TEST(CircularBufferWrite, WriteOneValueToBufferAfterCreation)
  *  - Buffer not full after a read
  *  - Buffer full again after two writes
  */
-TEST(CircularBufferWrite, EnsureWriteIsOnlySucessWhenBufferNotFull)
+TEST(CircularBufferRW, EnsureWriteIsOnlySucessWhenBufferNotFull)
 {
     uint32_t value = 55;
 

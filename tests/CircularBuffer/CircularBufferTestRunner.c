@@ -19,11 +19,8 @@ TEST_GROUP_RUNNER(CircularBuffer)
     RUN_TEST_CASE(CircularBufferFull, ReadsMakeItNotFullAndWriteMakeItFullAgain);
 
 
-    RUN_TEST_CASE(CircularBufferWrite, WriteOneValueToBufferAfterCreation);
-    RUN_TEST_CASE(CircularBufferWrite, EnsureWriteIsOnlySucessWhenBufferNotFull)
-
-
-
-    RUN_TEST_CASE(CircularBufferRead, ReadBeforeAnyWrite);
+    RUN_TEST_CASE(CircularBufferRW, WriteOneValueToBufferAfterCreation);
+    RUN_TEST_CASE(CircularBufferRW, EnsureWriteIsOnlySucessWhenBufferNotFull)
+    RUN_TEST_CASE(CircularBufferRW, ReadBeforeAnyWrite);
 }
 
