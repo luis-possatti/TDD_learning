@@ -53,12 +53,17 @@ bool CircularBuffer_IsFull(CircularBuffer_t buffer)
 
 int8_t CircularBuffer_WriteValue(CircularBuffer_t buffer, uint32_t value)
 {
-    data_on_buffer++;
-    if(data_on_buffer > buffer_size)
+    if(!CircularBuffer_IsFull(buffer))
     {
-        data_on_buffer = buffer_size;
+        data_on_buffer++; /* writes to a free node */
+        return 0; 
     }
-    return 0;
+    else
+    {
+        return -1; /* overwrites*/
+    }
+
+
 }
 
 
