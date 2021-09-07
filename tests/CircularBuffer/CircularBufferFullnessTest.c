@@ -52,3 +52,31 @@ TEST(CircularBufferFull, BufferFullOnlyAfterWritingToAllItCapability)
     }
 }
 
+/*
+ * This test cases ensures:
+ *  - Buffer becomes not full when a read is perform in a full buffer
+ *  - If a write is made, it becomes full again
+ */
+TEST(CircularBufferFull, ReadsMakeItNotFullAndWriteMakeItFullAgain)
+{
+    uint8_t number_of_data = circular_buffer_size + 5;
+
+    /* Overflows the buffer */
+    int i;
+    for(i = 0; i < number_of_data; i++)
+    {
+        CircularBuffer_WriteValue(buffer_p, 0);
+    }
+
+    /* Make a read and ensure it is not full anymore */
+    uint32_t data;
+    CircularBuffer_ReadValue(buffer_p, &data);
+    TEST_ASSERT_FALSE(CircularBuffer_IsFull(buffer_p));
+
+    /* Make a write and ensure it is full again */
+    CircularBuffer_WriteValue(buffer_p, 0);
+    TEST_ASSERT_TRUE(CircularBuffer_IsFull(buffer_p));
+
+
+}
+
